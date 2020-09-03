@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Button> numericButtons, opButtons;
 
-    private static String operator;
-    private static double stack = 0;
+    private static String operator = "";
+    private static Double memoryNumber = 0.0;
     private Button buttonDot;
     private Button buttonClear;
 
@@ -39,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         opButtons = Arrays.asList((Button) findViewById(R.id.buttonSub),
                 (Button) findViewById(R.id.buttonAdd),
                 (Button) findViewById(R.id.buttonMult),
-                (Button) findViewById(R.id.buttonDiv));
+                (Button) findViewById(R.id.buttonDiv),
+                (Button) findViewById(R.id.buttonEqual));
         buttonDot = (Button) findViewById(R.id.buttonDot);
 
         visor = (TextView) findViewById(R.id.textView1);
@@ -72,7 +74,9 @@ public class MainActivity extends AppCompatActivity {
         buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                operator = "";
                 visor.setText("0");
+                memoryNumber = 0.0;
             }
         });
     }
@@ -93,11 +97,36 @@ public class MainActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    operator = opString;
-                    stack = Double.parseDouble(visor.getText().toString());
-                    visor.setText("0");
+                    memoryNumber = calculate();
+                    DecimalFormat decimalFormat = new DecimalFormat("#.######");
+                    if (opString.equals("=")){
+                        visor.setText(decimalFormat.format(memoryNumber));
+                    } else {
+                        visor.setText("0");
+                        operator = opString;
+                    }
                 }
             });
+        }
+    }
+
+    private Double calculate(){
+        Double visorNumber = Double.parseDouble(visor.getText().toString());
+        switch (operator){
+            case "+":
+                operator = "";
+                return memoryNumber + visorNumber;
+            case "-":
+                operator = "";
+                return memoryNumber - visorNumber;
+            case "/":
+                operator = "";
+                return memoryNumber / visorNumber;
+            case "x":
+                operator = "";
+                return memoryNumber * visorNumber;
+            default:
+                return visorNumber;
         }
     }
 
