@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:background="#A5A8BE"
         android:orientation="vertical"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,15 +24,14 @@
             android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_margin="2dp"
-            android:background="#A7FFEB"
+            android:layout_margin="4dp"
+            android:background="#FFFFFF"
             android:paddingRight="4dp"
             android:text="TextView"
             android:textAlignment="viewEnd"
-            android:textAllCaps="true"
             android:textSize="30sp"
             android:textStyle="normal|bold"
-            android:typeface="monospace" />
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,14 +63,13 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/buttonDiv"
+                android:id="@+id/buttonClear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#A0C2FB"
-                android:text="/"
+                android:backgroundTint="#FFD180"
+                android:text="C"
                 android:textSize="24sp" />
-
 
         </LinearLayout>
 
@@ -103,12 +103,12 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/buttonMult"
+                android:id="@+id/buttonDiv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#A0C2FB"
-                android:text="x"
+                android:text="/"
                 android:textSize="24sp" />
 
         </LinearLayout>
@@ -143,12 +143,12 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/buttonSub"
+                android:id="@+id/buttonMult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#A0C2FB"
-                android:text="-"
+                android:text="x"
                 android:textSize="24sp" />
 
         </LinearLayout>
@@ -175,12 +175,12 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/buttonAdd"
+                android:id="@+id/buttonSub"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:backgroundTint="#A0C2FB"
-                android:text="+"
+                android:text="-"
                 android:textSize="24sp" />
 
         </LinearLayout>
@@ -190,14 +190,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/buttonClear"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:backgroundTint="#FFD180"
-                android:text="C"
-                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/buttonEqual"
@@ -206,6 +198,15 @@
                 android:layout_weight="0.75"
                 android:backgroundTint="#A0C2FB"
                 android:text="="
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/buttonAdd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:backgroundTint="#A0C2FB"
+                android:text="+"
                 android:textSize="24sp" />
 
         </LinearLayout>
