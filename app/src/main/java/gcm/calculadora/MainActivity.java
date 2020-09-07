@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         // Botao para limpar e reiniciar a calculadora
         buttonClear = (Button) findViewById(R.id.buttonClear);
 
+        // Configura as acoes dos botoes
         setNumericButtons();
         setButtonClear();
         setButtonDot();
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 String visorText = visor.getText().toString();
                 visor.setText(visorText.concat("."));
                 try {
-                    Double.parseDouble(visorText);
+                    Double.parseDouble(visorText.concat("."));
                 } catch (NumberFormatException e){
                     visor.setText(visorText);
                 }
@@ -135,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     } catch (UnsupportedOperationException e){
-                        visor.setText("Error: Div by 0");
+                        visor.setText("Error: Division by 0!");
                     } catch (NumberFormatException e){
                         visor.setText("Reset calculator!");
                     }
