@@ -72,11 +72,16 @@ public class MainActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CharSequence visorText = visor.getText();
-                    if (visorText == "0") {
+                    String visorText = visor.getText().toString();
+                    if (visorText.equals("0")) {
                         visor.setText(number);
                     } else {
-                        visor.setText(visorText.toString().concat(number.toString()));
+                        visor.setText(visorText.concat(number.toString()));
+                    }
+                    try {
+                        Double.parseDouble(visorText);
+                    } catch (NumberFormatException e){
+                        visor.setText(visorText);
                     }
                 }
             });
@@ -100,8 +105,14 @@ public class MainActivity extends AppCompatActivity {
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CharSequence visorText = visor.getText();
-                visor.setText(visorText.toString().concat("."));
+                String visorText = visor.getText().toString();
+                visor.setText(visorText.concat("."));
+                try {
+                    Double.parseDouble(visorText);
+                } catch (NumberFormatException e){
+                    visor.setText(visorText);
+                }
+
             }
         });
     }
@@ -113,13 +124,20 @@ public class MainActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    memoryNumber = calculate();
-                    DecimalFormat decimalFormat = new DecimalFormat("#.######");
-                    if (opString.equals("=")){
-                        visor.setText(decimalFormat.format(memoryNumber));
-                    } else {
-                        visor.setText("0");
-                        operator = opString;
+                    try {
+                        memoryNumber = calculate();
+                        DecimalFormat decimalFormat = new DecimalFormat("#.######");
+                        if (opString.equals("=")){
+                            visor.setText(decimalFormat.format(memoryNumber));
+                        } else {
+                            visor.setText("0");
+                            operator = opString;
+                        }
+
+                    } catch (UnsupportedOperationException e){
+                        visor.setText("Error: Div by 0");
+                    } catch (NumberFormatException e){
+                        visor.setText("Reset calculator!");
                     }
                 }
             });
@@ -138,6 +156,9 @@ public class MainActivity extends AppCompatActivity {
                 return memoryNumber - visorNumber;
             case "/":
                 operator = "";
+                if (visorNumber == 0.0){
+                    throw new UnsupportedOperationException();
+                }
                 return memoryNumber / visorNumber;
             case "x":
                 operator = "";
