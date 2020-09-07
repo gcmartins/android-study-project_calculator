@@ -15,8 +15,10 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Button> numericButtons, opButtons;
 
-    private static String operator = "";
-    private static Double memoryNumber = 0.0;
+    // Variavel que armazena a operacao
+    private String operator = "";
+    // Variavel que armezana o primeiro numero da operacao desejada
+    private Double memoryNumber = 0.0;
     private Button buttonDot;
     private Button buttonClear;
 
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Lista dos botoes numericos
         numericButtons = Arrays.asList(
                 (Button) findViewById(R.id.button0),
                 (Button) findViewById(R.id.button1),
@@ -37,22 +41,31 @@ public class MainActivity extends AppCompatActivity {
                 (Button) findViewById(R.id.button7),
                 (Button) findViewById(R.id.button8),
                 (Button) findViewById(R.id.button9));
+
+        // Lista dos botoes de operacao matematica
         opButtons = Arrays.asList((Button) findViewById(R.id.buttonSub),
                 (Button) findViewById(R.id.buttonAdd),
                 (Button) findViewById(R.id.buttonMult),
                 (Button) findViewById(R.id.buttonDiv),
                 (Button) findViewById(R.id.buttonEqual));
+
+        // Botao do separador decimal
         buttonDot = (Button) findViewById(R.id.buttonDot);
 
+        // Visor da calculadora
         visor = (TextView) findViewById(R.id.textView1);
         visor.setText("0");
+
+        // Botao para limpar e reiniciar a calculadora
         buttonClear = (Button) findViewById(R.id.buttonClear);
+
         setNumericButtons();
         setButtonClear();
         setButtonDot();
         setOpButtons();
     }
 
+    // Configura os listeners para os botoes numericos
     private void setNumericButtons() {
         for (Button button : numericButtons) {
             final CharSequence number = button.getText();
@@ -70,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Configura o listener para o botao buttonClear
     private void setButtonClear() {
         buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Configura o listener para o botao buttonDot
     private void setButtonDot(){
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Configura os listeners para os botoes de operacao
     private void setOpButtons(){
         for (Button button : opButtons){
             final String opString = button.getText().toString();
@@ -110,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Calcula a operacao retornando o resultado
     private Double calculate(){
         Double visorNumber = Double.parseDouble(visor.getText().toString());
         switch (operator){
