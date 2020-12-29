@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                     throw new UnsupportedOperationException();
                 }
                 return memoryNumber / visorNumber;
-            case "x":
+            case "*":
                 operator = "";
                 return memoryNumber * visorNumber;
             default:
